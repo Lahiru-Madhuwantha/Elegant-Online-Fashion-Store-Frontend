@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'; //1
+//import Container from './path-to-Container-component';
+import { BrowserRouter as Router, Routes,Route } from 'react-router-dom';//2
+import styled from 'styled-components';//3
+import Login from './Components/Login';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <Container>
+        <Routes>
+          <Route path="/" element={<h1>Home Page</h1>} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signUp" element={<h1>SignUp Page</h1>} />
+        </Routes>
+      </Container>
+    </Router>
+  );//5 Page hadana widiya
 }
+
+const Container = styled.div`
+  width: 100vw;
+ `; //4
 
 export default App;
