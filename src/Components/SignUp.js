@@ -1,29 +1,40 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Login() {
+function SignUp() {
     return (
         <Container>
           
           <FormContainer>
-            <h3>Welcome To Elegant! Please Sign In</h3>
-            <InptContainer>
-              <p>Mobile Number or Email</p>
-              <input type="email"
+            <h3>Create Account</h3>
+            <InputContainer>
+              <p>Your Name</p>
+              <input type="text"
+              placeholder='First and Last Name'/>
+            </InputContainer>
+            <InputContainer>
+              <p>Email or Phone Number</p>
+              <input type="email or number"
               placeholder='example@gmail.com'/>
-            </InptContainer>
-            <InptContainer>
+            </InputContainer>
+            <InputContainer>
               <p>Password</p>
               <input type="password"
               placeholder='********'/>
-            </InptContainer>
-            <LoginButton>Continue</LoginButton>
+            </InputContainer>
+            <InputContainer>
+              <p>Re-Enter Password</p>
+              <input type="password"
+              placeholder='********'/>
+            </InputContainer>
+            <SignUpButton>Continue</SignUpButton>
             <InfoText>
-              ___________________________________________________________________New to Elegant_______________________________________________________________
+            By creating an account, you agree to Elegant’s 
+            <span>Terms & Conditions</span> and 
+            <span>Privacy Policy</span>.
             </InfoText>
-            <SignUpButton>Create New Account</SignUpButton>
             <InfoText>
-            By continuing an account, you agree to Elegant’s <span>Terms & Conditions</span> and <span>Privacy Policy</span>.
+            Already You Have Elegant Account? <span>Sign In</span>
             </InfoText>
           </FormContainer>
           <FormContainer1>
@@ -36,7 +47,6 @@ function Login() {
         </Container>
     );
 }
-
 const Container = styled.div`
   width: 100%;
   min-width: 400px;
@@ -61,7 +71,7 @@ const Logo = styled.div`
 const FormContainer = styled.form`
 border: 1px solid lightgray;
 width: 50%;
-height: 500px;
+height: 600px;
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -77,15 +87,15 @@ h3{
   font-weight: 700;
   line-height: 33px;
   align-self: flex-start;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   margin-left: 10px;
 
 }
 `;
 
-const InptContainer = styled.div`
+const InputContainer = styled.div`
 width: 100%;
-padding: 10px;
+padding: 5px;
 margin-left: 20px;
 
 
@@ -99,7 +109,7 @@ input{
   padding-left: 5px;
   border-radius: 5px;
   border: 1px solid lightgray;
-  margin-top: 5px;
+  margin-top: 2px;
 
   &:focus{
     otline: none;
@@ -112,7 +122,7 @@ input{
 }
 `;
 
-const LoginButton = styled.button`
+const SignUpButton = styled.button`
 width: 70%;
 height: 35px;
 background-color: yellow;
@@ -123,15 +133,7 @@ margin-top: 20px;
 
 `;
 
-const SignUpButton = styled.button`
-width: 70%;
-height: 35px;
-background-color: red;
-border: none;
-otline: none;
-border-radius: 12px;
-margin-top: 20px;
-`;
+
 
 const InfoText = styled.p`
 font-size: 12px;
@@ -139,7 +141,7 @@ font-weight: 600;
 width: 100%;
 word-wrap: normal;
 word-break: normal;
-margin-top: 20px;
+margin-top: 10px;
 margin-left: 20px;
 alignment: center;
 
@@ -162,6 +164,4 @@ margin-top: 60px;
 
 
 `;
-
-  
-export default Login;
+export default SignUp;
