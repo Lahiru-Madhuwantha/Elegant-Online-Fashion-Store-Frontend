@@ -18,6 +18,7 @@
 import React from "react";
 import styled from 'styled-components';
 import Navbar from './Navbar';
+import Card from "./Card";
 
 function Home() {
   return(
@@ -38,6 +39,12 @@ function Home() {
                 <img src="./Banner1.png" alt=""/>
               </BannerLogo>           
         </Banner1>
+        <Main>
+          <Card/>
+          <Card/>
+          <Card/>
+          <Card/>
+        </Main>
     </Container>
   );
 }
@@ -59,6 +66,8 @@ display: flex;
 align-items: center;
 position: relative;
 margin-top: 0px;
+
+
 `;
 const Banner1Text = styled.div`
 font-size: 28px;
@@ -69,8 +78,10 @@ width: 100%;
 word-wrap: break-word;
 word-break: normal;
 margin: 50px 150px 90px 200px;
-
-alignment: center;
+@media (max-width: 1250px) {
+  font-size: 12px;
+  margin: 0px 0px 0px 50px;
+}
 `;
 
 const Banner1Button = styled.button`
@@ -86,6 +97,11 @@ border-radius: 12px;
 color: white;
 font-size: 15px;
 
+@media (max-width: 1250px) {
+  
+  width: 40%;
+}
+
 `;
 const BannerLogo = styled.div`
 margin-right: 0px;
@@ -94,6 +110,18 @@ crusor: pointer;
     width: 411px;
     margin-Button: 0px;
   }
+  
+`;
+const Main = styled.div`
+display: grid;
+justify-content: center;
+place-items: center;
+width: 100%;
+margin-top: 20px;
+
+grid-template-rows: 420px;
+grid-template-columns : repeat(4,300px);
+grid-gap: 20px;
 `;
 
 export default Home;
