@@ -15,18 +15,22 @@ function SignUp() {
 
   const navigate = useNavigate();
   const handleSubmit = (event) =>{
-    event.preventDefault();
+   event.preventDefault();
     axios.post('http://localhost:3005/api/v1/buyer',value)
     .then(res=> {
-      //console.log(res);
-      if(res.data.Status === 'Success'){
-        
+      console.log(res.status);
+      if(res.status === 201){
+        console.log('User registered successfully');
         navigate('/login')
-      }else{
-        alert('Error');
+      }else if(res.status === 400 && res.data.message === 'User already exists'){
+        alert('User already exists');  
+      }
+      else
+      {
+        alert('An error occured');
       }
     })
-    .then(err => console.log(err));
+    .catch((err) => console.log(err));
   }
     return (
         <Container>
