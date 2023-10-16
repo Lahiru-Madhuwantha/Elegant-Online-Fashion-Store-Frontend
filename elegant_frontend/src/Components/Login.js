@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
 
 function Login() {
     return (
@@ -12,7 +13,7 @@ function Login() {
               <input type="email"
               placeholder='example@gmail.com'/>
             </InptContainer>
-            <InptContainer>
+            <InptContainer >
               <p>Password</p>
               <input type="password"
               placeholder='********'/>
@@ -21,7 +22,7 @@ function Login() {
             <InfoText>
               ___________________________________________________________________New to Elegant_______________________________________________________________
             </InfoText>
-            <SignUpButton>Create New Account</SignUpButton>
+            <SignUpButton as={Link} to="/signUp">Create New Account</SignUpButton>
             <InfoText>
             By continuing an account, you agree to Elegant’s <span>Terms & Conditions</span> and <span>Privacy Policy</span>.
             </InfoText>

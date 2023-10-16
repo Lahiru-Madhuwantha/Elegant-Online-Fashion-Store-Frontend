@@ -1,33 +1,70 @@
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import {Link} from 'react-router-dom';
+
 
 function SignUp() {
+  const [value, setValue] = React.useState({
+    name: '',
+    email: '',
+    phone: '',
+    password: ''
+  });
+
+  const navigate = useNavigate();
+  const handleSubmit = (event) =>{
+    event.preventDefault();
+    axios.post('http://localhost:3005/api/v1/buyer',value)
+    .then(res=> {
+      //console.log(res);
+      if(res.data.Status === 'Success'){
+        
+        navigate('/login')
+      }else{
+        alert('Error');
+      }
+    })
+    .then(err => console.log(err));
+  }
     return (
         <Container>
           
-          <FormContainer>
+          <FormContainer onSubmit={handleSubmit}>
             <h3>Create Account</h3>
             <InputContainer>
               <p>Your Name</p>
               <input type="text"
-              placeholder='First and Last Name'/>
+              placeholder='First and Last Name'
+              name='name' onChange={e=> setValue({...value,name : e.target.value})}
+              autoComplete="name"
+              />
             </InputContainer>
             <InputContainer>
-              <p>Email or Phone Number</p>
-              <input type="email or number"
-              placeholder='example@gmail.com'/>
+              <p>Email</p>
+              <input type="email"
+              placeholder='example@gmail.com'
+              name='email' onChange={e=> setValue({...value,email : e.target.value})}
+              autoComplete="email"
+              />
             </InputContainer>
             <InputContainer>
-              <p>Password</p>
+              <p>Phone Number</p>
+              <input type="phone"
+              placeholder='+xx xx xxx xxxx'
+              name='phone' onChange={e=> setValue({...value,phone : e.target.value})}
+              autoComplete="phone"
+              />
+            </InputContainer>
+            <InputContainer>
+              <p>Enter Password</p>
               <input type="password"
-              placeholder='********'/>
+              placeholder='********'
+              name='password' onChange={e=> setValue({...value,password : e.target.value})}
+              />
             </InputContainer>
-            <InputContainer>
-              <p>Re-Enter Password</p>
-              <input type="password"
-              placeholder='********'/>
-            </InputContainer>
-            <SignUpButton>Continue</SignUpButton>
+            <SignUpButton type='submit'>Continue</SignUpButton>
             <InfoText>
             By creating an account, you agree to Elegant’s 
             <span>Terms & Conditions</span> and 
