@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Navbar() {
+function Navbar({basket}) {
 
     return (
       <ContainerMain>
@@ -34,14 +34,14 @@ function Navbar() {
               <p>Neckless</p>
             </ItemBarButton>
             <ItemBarButton>
-              <p>Bracelets</p>
+              <p>Bracelets</p> 
             </ItemBarButton>
             <ItemBarButton>
               <p>Belts</p>
             </ItemBarButton>
             <BasketButton>
               <h3>Cart Has</h3>
-              <p>0</p>
+              <p>{basket.length}</p>
               <h3>Items</h3>
               <img src="./Cart.png" alt=""/>
             </BasketButton>

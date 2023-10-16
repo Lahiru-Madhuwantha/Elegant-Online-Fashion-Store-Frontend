@@ -1,4 +1,4 @@
-import React from 'react'; //1
+import React,{ useState }from 'react'; //1
 //import Container from './path-to-Container-component';
 import { BrowserRouter as Router, Routes,Route } from 'react-router-dom';//2
 import styled from 'styled-components';//3
@@ -7,11 +7,13 @@ import SignUp from './Components/SignUp';
 import Home from './Components/Home';
 
 function App() {
+  const [basket,setBasket] = useState([]);
+  console.log('basket >>>>',basket);
   return (
     <Router>
       <Container>
         <Routes>
-          <Route path="/" element={<Home/>} />
+          <Route path="/" element={<Home basket={basket} setBasket={setBasket}/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/signUp" element={<SignUp/>} />
         </Routes>

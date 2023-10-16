@@ -20,10 +20,10 @@ import styled from 'styled-components';
 import Navbar from './Navbar';
 import Card from "./Card";
 
-function Home() {
+function Home({basket,setBasket}) {
   return(
     <Container>
-      <Navbar/>
+      <Navbar basket={basket}/>
       <Banner1>
               <Banner1Text>
               “Unleash her inner charm with our latest sunglass collection
@@ -40,10 +40,38 @@ function Home() {
               </BannerLogo>           
         </Banner1>
         <Main>
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
+          <Card basket={basket} 
+                setBasket={setBasket} 
+                image = {"./neck1.jpeg"}
+                price={"Rs.1200"}
+                rating={3}
+                title={"Neckless Rs.1200"}
+                />
+          <Card basket={basket} 
+                setBasket={setBasket} 
+                image = {"./neck1.jpeg"}
+                price={"Rs.1000"}
+                rating={3.5}
+                title={"Neckless Rs.1200"}/>
+          <Card basket={basket} 
+                setBasket={setBasket} 
+                image = {"./neck1.jpeg"}
+                price={"Rs.100"}
+                rating={4.5}
+                title={"Neckless Rs.1200"}/>
+          <Card basket={basket} 
+                setBasket={setBasket} 
+                image = {"./neck1.jpeg"}
+                price={"Rs.2200"}
+                rating={2.5}
+                title={"Neckless Rs.1200"}/>
+          <Card basket={basket} 
+                setBasket={setBasket} 
+                image = {"./neck1.jpeg"}
+                price={"Rs.1620"}
+                rating={3.5}
+                title={"Neckless Rs.1200"}/>
+          
         </Main>
     </Container>
   );
@@ -51,10 +79,11 @@ function Home() {
 
 const Container = styled.div`
 width: 100%;
-height: 100vh;
+height: 100%;
 display: flex;
 flex-direction: column;
 padding: 0px;
+background-color: rgb(234,237,237);
 `;
 
 //Banner 1
@@ -118,10 +147,12 @@ justify-content: center;
 place-items: center;
 width: 100%;
 margin-top: 20px;
+margin-bottom: 20px;
 
-grid-template-rows: 420px;
+grid-auto-rows: 420px;
 grid-template-columns : repeat(4,300px);
 grid-gap: 20px;
+
 `;
 
 export default Home;
