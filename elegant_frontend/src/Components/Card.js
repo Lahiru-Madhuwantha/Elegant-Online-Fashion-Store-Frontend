@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Rating from "@mui/material/Rating";
+import { Rating } from "@mui/material";
 import { useStateValue } from "../StateProvider";
 import { useNavigate } from 'react-router-dom';
 //import { useState } from 'react';

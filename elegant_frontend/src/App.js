@@ -7,6 +7,7 @@ import SignUp from './Components/SignUp';
 import Home from './Components/Home';
 import Product from './Components/Product';
 import Order from './Components/Order';
+import Admin from './Components/Admin';
 
 function App() {
   const [basket,setBasket] = useState([]);
@@ -20,6 +21,7 @@ function App() {
           <Route path="/signUp" element={<SignUp/>} />
           <Route path="/product" element={<Product/>}/>
           <Route path="/order" element={<Order/>}/>
+          <Route path="/admin" element={<Admin/>}/>
         </Routes>
       </Container>
     </Router>
