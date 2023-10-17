@@ -1,8 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 function Navbar({basket}) {
 
+  const navigate = useNavigate();
+  const handleSignIn = (event) =>{
+    navigate('/login')
+  }
     return (
       <ContainerMain>
         <Container>
@@ -19,7 +24,7 @@ function Navbar({basket}) {
                 <img src="searchIcon.png" alt="" />
               </SearchIcon>
             </SearchBar>
-            <SignInButton>Sign In</SignInButton>
+            <SignInButton onClick={handleSignIn}>Sign In</SignInButton>
             <RightContainer></RightContainer>
           </Inner>
         </Container>

@@ -1,28 +1,69 @@
-import React from 'react';
+import React , { useState } from 'react';
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
+//import {Link} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 
 function Login() {
+  const navigate = useNavigate();
+  const handleSignUp = (event) =>{
+    navigate('/signUp')
+  }
+  ////////////////////////////////////
+    const [value, setValue] = useState({
+      email: '',
+      password: ''
+    });
+  
+    const [error, setError] = useState(null);
+    //const navigate = useNavigate();
+  
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+  
+      try {
+        const response = await axios.post('http://localhost:3005/api/v1/buyer/login', value);
+  
+        if (response.status === 200) {
+          console.log('User logged in successfully');
+          navigate('/');
+        }
+      } catch (err) {
+        if (err.response && err.response.data && err.response.data.message) {
+          setError(err.response.data.message);
+        } else {
+          setError('An error occurred');
+        }
+      }
+    };
+  
+  
+  //////////////////////////////////
     return (
         <Container>
           
-          <FormContainer>
+          <FormContainer onSubmit={handleSubmit}>
             <h3>Welcome To Elegant! Please Sign In</h3>
             <InptContainer>
-              <p>Mobile Number or Email</p>
+              <p> Email</p>
               <input type="email"
-              placeholder='example@gmail.com'/>
+              placeholder='example@gmail.com'
+              name='email' onChange={e=> setValue({...value,email : e.target.value})}
+              autoComplete="email"/>
             </InptContainer>
             <InptContainer >
               <p>Password</p>
               <input type="password"
-              placeholder='********'/>
+              placeholder='********'
+              name='password' onChange={e=> setValue({...value,password : e.target.value})}
+              autoComplete="email"/>
             </InptContainer>
-            <LoginButton>Continue</LoginButton>
+            <LoginButton type='submit'>Continue</LoginButton>
             <InfoText>
               ___________________________________________________________________New to Elegant_______________________________________________________________
             </InfoText>
-            <SignUpButton as={Link} to="/signUp">Create New Account</SignUpButton>
+            <SignUpButton onClick={handleSignUp}>Create New Account</SignUpButton>
             <InfoText>
             By continuing an account, you agree to Elegant’s <span>Terms & Conditions</span> and <span>Privacy Policy</span>.
             </InfoText>

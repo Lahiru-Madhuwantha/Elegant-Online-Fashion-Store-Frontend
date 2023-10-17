@@ -75,7 +75,7 @@ function SignUp() {
             <span>Privacy Policy</span>.
             </InfoText>
             <InfoText>
-            Already You Have Elegant Account? <span>Sign In</span>
+            Already You Have Elegant Account? <Link to="/login">Sign In</Link>
             </InfoText>
           </FormContainer>
           <FormContainer1>
