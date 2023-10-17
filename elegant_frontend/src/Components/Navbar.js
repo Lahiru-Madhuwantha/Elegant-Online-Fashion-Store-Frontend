@@ -46,7 +46,7 @@ function Navbar({basket}) {
             </ItemBarButton>
             <BasketButton>
               <h3>Cart Has</h3>
-              <p>{basket.length}</p>
+              <p>{basket?.length}</p>
               <h3>Items</h3>
               <img src="./Cart.png" alt=""/>
             </BasketButton>

@@ -1,78 +1,61 @@
-// import React from 'react';
-// import styled from 'styled-components';
-// import Navbar from './Navbar';
 
-
-// function Home() {
-//   return (
-//     <Container>
-//       <Navbar/>
-//       <h1>Lahir</h1>
-//     </Container>
-//   );
-// }
-// const Container = styled.div``;
-
-// export default Home;
 
 import React from "react";
 import styled from 'styled-components';
 import Navbar from './Navbar';
 import Card from "./Card";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import Login from "./Login";
+//import { useNavigate } from 'react-router-dom';
 
-function Home({basket,setBasket}) {
-  return(
+function Home() {
+  const [products, setProducts] = useState("");
+  //const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const authToken = localStorage.getItem('authToken');
+        const headers = authToken ? { 'x-access-token': authToken } : {};
+
+        const response = await axios.get('http://localhost:3005/api/v1/product/all',{headers}); // Replace 'yourProductId' with the actual ID
+        //console.log(response.data);
+        setProducts([response.data]);
+      } catch (error) {
+        //console.error('Error fetching product:', error.message);
+      }
+    };
+  
+    fetchData();
+  }, []);
+
+  return (
     <Container>
-      <Navbar basket={basket}/>
+      <Navbar />
       <Banner1>
-              <Banner1Text>
-              “Unleash her inner charm with our latest sunglass collection
-              tailored exclusively for girls. From vibrant shades to adorable
-              designs, these sunglasses are the ultimate style companion for
-              every little fashionista”
+        <Banner1Text>
+          Unleash her inner charm with our latest sunglass collection tailored exclusively for girls. From vibrant shades to adorable designs, these sunglasses are the ultimate style companion for every little fashionista
+          <Banner1Button>SHOP NOW</Banner1Button>
+        </Banner1Text>
+        <BannerLogo>
+          <img src="./Banner1.png" alt="" />
+        </BannerLogo>
+      </Banner1>
+      
+      <Main>
+        
+      {products?.map(({ _id, image, name, price, rating }) => (
+    <Card
+      key={_id}
+      image={image}
+      name={name}
+      price={price}
+      rating={rating}
+    />
+  ))}
 
-                <Banner1Button>
-                  SHOP NOW
-                </Banner1Button> 
-              </Banner1Text>
-              <BannerLogo>
-                <img src="./Banner1.png" alt=""/>
-              </BannerLogo>           
-        </Banner1>
-        <Main>
-          <Card basket={basket} 
-                setBasket={setBasket} 
-                image = {"./neck1.jpeg"}
-                price={"Rs.1200"}
-                rating={3}
-                title={"Neckless Rs.1200"}
-                />
-          <Card basket={basket} 
-                setBasket={setBasket} 
-                image = {"./neck1.jpeg"}
-                price={"Rs.1000"}
-                rating={3.5}
-                title={"Neckless Rs.1200"}/>
-          <Card basket={basket} 
-                setBasket={setBasket} 
-                image = {"./neck1.jpeg"}
-                price={"Rs.100"}
-                rating={4.5}
-                title={"Neckless Rs.1200"}/>
-          <Card basket={basket} 
-                setBasket={setBasket} 
-                image = {"./neck1.jpeg"}
-                price={"Rs.2200"}
-                rating={2.5}
-                title={"Neckless Rs.1200"}/>
-          <Card basket={basket} 
-                setBasket={setBasket} 
-                image = {"./neck1.jpeg"}
-                price={"Rs.1620"}
-                rating={3.5}
-                title={"Neckless Rs.1200"}/>
-          
-        </Main>
+      </Main>
     </Container>
   );
 }

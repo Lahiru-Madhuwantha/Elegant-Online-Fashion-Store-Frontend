@@ -27,6 +27,7 @@ function Login() {
   
         if (response.status === 200) {
           console.log('User logged in successfully');
+          localStorage.setItem('authToken', response.data.token);
           navigate('/');
         }
       } catch (err) {

@@ -1,10 +1,11 @@
 // import axios from "../axios";
-// import React, { useEffect, useState } from "react";
-// import styled from "styled-components";
+ //import React, { useEffect, useState } from "react";
+import React from "react";
+import styled from "styled-components";
 // import Navbar from "./Navbar";
 // import { useStateValue } from "../StateProvider";
 
-// function Orders() {
+function Order() {}
 //   const [{ user }] = useStateValue();
 //   const [orders, setOrders] = useState([]);
 //   useEffect(() => {
@@ -165,4 +166,4 @@
 //     }
 //   }
 // `;
-// export default Orders;
+ export default Order;
