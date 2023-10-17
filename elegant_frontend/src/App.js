@@ -5,6 +5,7 @@ import styled from 'styled-components';//3
 import Login from './Components/Login';
 import SignUp from './Components/SignUp';
 import Home from './Components/Home';
+import Product from './Components/Product';
 
 function App() {
   const [basket,setBasket] = useState([]);
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Home basket={basket} setBasket={setBasket}/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/signUp" element={<SignUp/>} />
+          <Route path="/product" element={<Product/>}/>
         </Routes>
       </Container>
     </Router>
