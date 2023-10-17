@@ -3,44 +3,42 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 function Product() {
-  const [name, setName] = useState("");
-  const [image, setImage] = useState("");
+  const [name, setName] = useState('');
+  const [image, setImage] = useState(null);
   const [price, setPrice] = useState(0);
   const [rating, setRating] = useState(0);
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState('');
 
   const addProduct = async (e) => {
     e.preventDefault();
 
+    
     try {
-      const response = await axios.post("http://localhost:3005/api/v1/product", {
-        name,
-        image,
-        price,
-        rating,
-        description,
-      });
+      // Create a FormData object to send the file
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('image', image);
+      formData.append('price', price);
+      formData.append('rating', rating);
+      formData.append('description', description);
 
-      console.log("Product added successfully:", response.data);
+      const response = await axios.post('http://localhost:3005/api/v1/product', formData);
 
-  
-      setName("");
-      setImage("");
+      console.log('Product added successfully:', response.data);
+
+      setName('');
+      setImage(null);
       setPrice(0);
       setRating(0);
-      setDescription("");
+      setDescription('');
     } catch (error) {
-      
-      console.error("Error adding product:", error.message);
-      alert("Error adding product. Please try again.");
+      console.error('Error adding product:', error.message);
+      alert('Error adding product. Please try again.');
     }
   };
+
   return (
     <Container>
-      {/* <Logo>
-        <img src="./elegantlogo.png" alt="" />
-      </Logo> */}
-
       <FormContainer>
         <h3>Add Product</h3>
 
@@ -52,12 +50,14 @@ function Product() {
             value={name}
           />
         </InputContainer>
+        {/* Image input */}
         <InputContainer>
           <p>Image</p>
           <input
-            type="text"
-            onChange={(e) => setImage(e.target.value)}
-            value={image}
+            type="file"  // Corrected type to "file"
+            accept="image/*"
+            onChange={(e) => setImage(e.target.files[0])}  
+            
           />
         </InputContainer>
         <InputContainer>
@@ -83,9 +83,9 @@ function Product() {
             onChange={(e) => setDescription(e.target.value)}
             value={description}
           />
-          </InputContainer>
+        </InputContainer>
 
-        <Button onClick={addProduct}>Add Product</Button>
+        <Button onClick={(e)=>addProduct(e)}>Add Product</Button>
       </FormContainer>
     </Container>
   );
