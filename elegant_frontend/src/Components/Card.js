@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { Rating } from "@mui/material";
+import {Rating} from '@mui/material';
 import { useStateValue } from "../StateProvider";
 import { useNavigate } from 'react-router-dom';
+
 //import { useState } from 'react';
- function Card({  image, name, description ,price, rating }) {
-  console.log('Card props:', { image, name, rating, price });
+ function Card({  key,image, name ,price, rating }) {
+  //console.log('Card props:', { image, name, rating, price });
 
   const navigate = useNavigate();
   const handleAddToBasket = (event) =>{
@@ -27,10 +28,14 @@ import { useNavigate } from 'react-router-dom';
 //     });
 //   } 
 
+console.log("image",image);
   return (
     <Container>
+      
       <Image>
-        <img src={image} alt="" />
+      <img src={image} alt="image" width={100} height={100} />
+
+
       </Image>
       <Description>
         <h5>{name}</h5>

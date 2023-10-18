@@ -7,10 +7,11 @@ import Card from "./Card";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Login from "./Login";
+
 //import { useNavigate } from 'react-router-dom';
 
 function Home() {
-  const [products, setProducts] = useState("");
+  const [products, setProducts] = useState([]);
   //const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,7 +22,7 @@ function Home() {
 
         const response = await axios.get('http://localhost:3005/api/v1/product/all',{headers}); // Replace 'yourProductId' with the actual ID
         //console.log(response.data);
-        setProducts([response.data]);
+        setProducts(response.data);
       } catch (error) {
         //console.error('Error fetching product:', error.message);
       }
@@ -46,6 +47,7 @@ function Home() {
       <Main>
         
         {products && products.map((product) =>(
+          console.log(product.image),
         <Card
         key={product._id}
         image={product.image}
@@ -53,6 +55,7 @@ function Home() {
         rating={product.rating}
         name={product.name}
       />
+      
         ))}
       </Main>
     </Container>

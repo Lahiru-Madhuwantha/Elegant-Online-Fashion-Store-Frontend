@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+
 import styled from "styled-components";
 
 function Product() {
@@ -9,6 +10,7 @@ function Product() {
   const [rating, setRating] = useState(0);
   const [description, setDescription] = useState('');
 
+  
   const addProduct = async (e) => {
     e.preventDefault();
 
@@ -86,6 +88,7 @@ function Product() {
         </InputContainer>
 
         <Button onClick={(e)=>addProduct(e)}>Add Product</Button>
+        <Button></Button>
       </FormContainer>
     </Container>
   );
