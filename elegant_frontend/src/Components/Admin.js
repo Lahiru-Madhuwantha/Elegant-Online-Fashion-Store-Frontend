@@ -1,15 +1,15 @@
 import React from "react";
 import styled from 'styled-components';
 import Navbar from './Navbar';
-import Card from "./Card";
+import CardAD from "./CardAD";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Login from "./Login";
 import { Button } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
 
-function Home() {
-  const [products, setProducts] = useState("");
+function Admin() {
+  const [products, setProducts] = useState([]);
   const navigate = useNavigate();
   const handleAdd = (event) =>{
     navigate('/product')}
@@ -23,9 +23,9 @@ function Home() {
 
         const response = await axios.get('http://localhost:3005/api/v1/product/all',{headers}); // Replace 'yourProductId' with the actual ID
         //console.log(response.data);
-        setProducts([response.data]);
+        setProducts(response.data);
       } catch (error) {
-        //console.error('Error fetching product:', error.message);
+        console.error('Error fetching product:', error.message);
       }
     };
   
@@ -43,7 +43,7 @@ function Home() {
       <Main>
         
         {products && products.map((product) =>(
-        <Card
+        <CardAD
         key={product._id}
         image={product.image}
         price={product.price}
@@ -92,21 +92,22 @@ width: 100%;
 margin-top: 20px;
 margin-bottom: 20px;
 
-grid-auto-rows: 420px;
+grid-auto-rows: 480px;
 grid-template-columns : repeat(4,300px);
 grid-gap: 20px;
 
 `;
 
 const AddButton = styled.button`
-width: 20%;
+width: 10%;
 height: 35px;
-background-color: purple;
+background-color: #FF8F00;
+color: white;
 border: none;
 otline: none;
 border-radius: 12px;
 margin-top: 20px;
-margin-left: 20px;
+margin-left: 108px;
 `;
 
-export default Home;
+export default Admin;

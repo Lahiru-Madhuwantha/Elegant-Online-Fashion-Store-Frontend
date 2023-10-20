@@ -5,39 +5,16 @@ import { useStateValue } from "../StateProvider";
 import { useNavigate } from 'react-router-dom';
 
 //import { useState } from 'react';
- function Card({  key,image, name ,price, rating }) {
-  //console.log('Card props:', { image, name, rating, price });
-
-  const navigate = useNavigate();
-  const handleAddToBasket = (event) =>{
-    navigate('/payment')}
-//   const [{ basket }, dispatch] = useStateValue();
-//   console.log("basket >>>>", basket);
-//   const addToBasket = (e) => {
-//    e.preventDefault();
-
-//     dispatch({
-//       type: "ADD_TO_BASKET",
-//       item: {
-//         id,
-//         title,
-//         price,
-//         image,
-//         rating,
-//       },
-//     });
-//   } 
-
-console.log("image",image);
+ function CardAD({  key,image, name ,price, rating }) {
+  
   return (
     <Container>
       
       <Image>
-      <img src={image} alt="image" width={100} height={100} />
+      <img src={image} alt="image" width={100} height={70} />
 
 
       </Image>
-      
       <Description>
         <h5>{name}</h5>
         <Rating
@@ -48,10 +25,10 @@ console.log("image",image);
         />
         <p>Rs {price}</p>
 
-        { <button onClick={handleAddToBasket}>Add to Cart</button> }
+        { <button >Update</button> }
+        {<button>Delete</button>}
       </Description>
     </Container>
-    
   );
   }
 
@@ -99,11 +76,11 @@ const Description = styled.div`
   button {
     width: 100%;
     height: 33px;
-    background-color: #fa8900;
+    background-color: lightblue;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     margin-bottom: 10px;
   }
 `;
-export default Card;
+export default CardAD;

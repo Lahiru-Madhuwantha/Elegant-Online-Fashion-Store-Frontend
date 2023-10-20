@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 function Product() {
@@ -10,7 +10,10 @@ function Product() {
   const [rating, setRating] = useState(0);
   const [description, setDescription] = useState('');
 
-  
+  const navigate = useNavigate();
+  const handleProduct = (event) =>{
+    navigate('/')
+  }
   const addProduct = async (e) => {
     e.preventDefault();
 
@@ -41,7 +44,7 @@ function Product() {
 
   return (
     <Container>
-      <FormContainer>
+      <FormContainer onSubmit={handleProduct}>
         <h3>Add Product</h3>
 
         <InputContainer>
@@ -88,7 +91,7 @@ function Product() {
         </InputContainer>
 
         <Button onClick={(e)=>addProduct(e)}>Add Product</Button>
-        <Button></Button>
+        <Button onClick={handleProduct}>Back</Button>
       </FormContainer>
     </Container>
   );

@@ -8,6 +8,8 @@ import Home from './Components/Home';
 import Product from './Components/Product';
 import Order from './Components/Order';
 import Admin from './Components/Admin';
+import Payment from './Components/payment';
+
 
 function App() {
   const [basket,setBasket] = useState([]);
@@ -21,7 +23,9 @@ function App() {
           <Route path="/signUp" element={<SignUp/>} />
           <Route path="/product" element={<Product/>}/>
           <Route path="/order" element={<Order/>}/>
-          <Route path="/admin" element={<Admin/>}/>
+          <Route path="/admin" element={<Admin/>}/> 
+          <Route path='/payment'element={<Payment/>}/>
+          
         </Routes>
       </Container>
     </Router>
